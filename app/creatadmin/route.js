@@ -4,10 +4,11 @@ import bcrypt from 'bcrypt';
 async function createAdmin() {
   const adminEmail = 'abderrahmaneraquibi@gmail.com';
   const adminUsername = 'abdoraquibi';
-  const adminPassword = '9E0s9{A-[Q.r|]AY.'; // Change this to a secure password
+  const adminPassword = '9E0s9{A-[Q.r|]AY.'; // Use secure password
   
   const hashedPassword = await bcrypt.hash(adminPassword, 10);
 
+  // Removed the 'USE' statement since the database is already specified during connection
   const [existingAdmin] = await db.execute('SELECT * FROM users WHERE email = ?', [adminEmail]);
 
   if (existingAdmin.length === 0) {
